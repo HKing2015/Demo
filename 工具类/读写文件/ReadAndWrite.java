@@ -1,5 +1,3 @@
-package com.lecloud.ipregion.common.util;
-
 import java.io.*;
 
 /**
