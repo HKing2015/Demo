@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"  
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"  
+    xmlns:aop="http://www.springframework.org/schema/aop"  
+    xsi:schemaLocation="  
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+  	
+  	<!-- 加载redis配置文件 -->
+    <context:property-placeholder location="classpath:/properties/redis.properties" /> 
+  	
+  	<!-- 配置redis所需参数 -->
+    <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">  
+        <property name="testOnBorrow" value="${redis.testOnBorrow}" />
+        <property name="testOnReturn" value="${redis.pool.testOnReturn}"/>
+    </bean>
+     
+    <!-- redis连接池配置 -->
+    <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+		<constructor-arg index="0" ref="poolConfig" />
+		<constructor-arg index="1" value="${redis.host}" />
+		<constructor-arg index="2" value="${redis.port}" />
+	</bean>   
+      
+</beans>  

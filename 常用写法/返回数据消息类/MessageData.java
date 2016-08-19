@@ -1,6 +1,13 @@
 public class MessageData<T> implements Serializable {
     
     private static final long serialVersionUID = 7422860863328163643L;
+
+    /**** 正确结果 **/
+	public static final int OK=200;
+	
+	/**** 错误结果 **/
+	public static final int ERROR=500;
+
     //状态码
     private Integer code;
     //消息
